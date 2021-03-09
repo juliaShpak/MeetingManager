@@ -26,7 +26,9 @@ namespace MeetingManager.Repositories.Implementation
 
         public void DeleteUserById(int id)
         {
-            db.Users.Remove(db.Users.FirstOrDefault(u => u.Id == id));
+            var user = db.Users.FirstOrDefault(u => u.Id == id);
+            if (user == null) return;
+            db.Users.Remove(user);
             db.SaveChanges();
         }
 
